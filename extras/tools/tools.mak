@@ -287,6 +287,22 @@ CLEAN_PKG += protobuf
 DISTCLEAN_PKG += protobuf-$(PROTOBUF_VERSION).tar.bz2
 CLEAN_FILE += .protoc
 
+# GetText 
+gettext-$(GETTEXT_VERSION).tar.gz:
+	$(call download,$(GETTEXT_URL))
+
+gettext: gettext-$(GETTEXT_VERSION).tar.gz
+	$(UNPACK)
+	$(MOVE)
+
+.gettext: gettext
+	(cd $< && ./configure --prefix="$(PREFIX)"  && $(MAKE) && $(MAKE) install)
+	(find $(PREFIX) -name 'gettext*.pc' -exec rm -f {} \;)
+	touch $@
+
+CLEAN_PKG += gettext
+DISTCLEAN_PKG += gettext-$(GETTEXT_VERSION).tar.bz2
+CLEAN_FILE += .gettext
 #
 #
 #

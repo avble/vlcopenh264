@@ -1,0 +1,58 @@
+#! /bin/sh
+
+#
+# Command line handling
+#
+usage()
+{
+	echo "Usage: $0 [--prefix=PREFIX]"
+	echo "  --prefix=PREFIX  install files in PREFIX"
+}
+
+PREFIX=
+
+
+while test -n "$1"
+do
+	case "$1" in
+		--prefix=*)
+			PREFIX="${1#--prefix=}"
+			;;
+		*)
+			echo "Unrecognized options $1"
+			;;
+	esac
+	shift
+done
+
+
+if test "$PREFIX"
+then
+	# strip trailing slash
+	PREFIX="${PREFIX%/}"
+fi
+
+#
+# Prepare files
+#
+echo "Creating configuration file... config.mak"
+exec 3>config.mak || exit $?
+cat >&3 << EOF
+# This file was automatically generated.
+# Any change will be overwritten if ../bootstrap is run again.
+
+EOF
+
+add_make()
+{
+	while test -n "$1"
+	do
+		echo "$1" >&3
+		shift
+	done
+}
+
+
+test -z "$PREFIX" || add_make "PREFIX := $PREFIX"
+
+

@@ -46,3 +46,7 @@ ANT_URL=$(VIDEOLAN)/apache-ant-$(ANT_VERSION)-bin.tar.bz2
 
 PROTOBUF_VERSION := 2.6.1
 PROTOBUF_URL := https://github.com/google/protobuf/releases/download/v$(PROTOBUF_VERSION)/protobuf-$(PROTOBUF_VERSION).tar.bz2
+
+GETTEXT_VERSION := 0.19.6
+GETTEXT_URL := http://ftp.gnu.org/pub/gnu/gettext/gettext-$(GETTEXT_VERSION).tar.gz 
+

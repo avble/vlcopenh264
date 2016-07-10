@@ -20,6 +20,6 @@ endif
 
 .openjpeg: openjpeg
 	$(RECONF)
-	cd $< && $(HOSTVARS) CFLAGS="$(CFLAGS) -DOPJ_STATIC" ./configure --enable-png=no --enable-tiff=no $(HOSTCONF)
+	cd $< && $(HOSTVARS) CFLAGS="$(CFLAGS) -DOPJ_STATIC" ./configure --enable-png=no --enable-tiff=no 
 	cd $< && $(MAKE) -C libopenjpeg -j1 install
 	touch $@
